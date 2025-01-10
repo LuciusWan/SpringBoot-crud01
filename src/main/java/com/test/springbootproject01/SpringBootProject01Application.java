@@ -10,6 +10,7 @@ public class SpringBootProject01Application {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootProject01Application.class, args);
+        // 1
     }
 
 }
