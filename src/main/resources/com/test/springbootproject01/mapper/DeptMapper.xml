@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.springbootproject01.mapper.DeptMapper">
+    <insert id="save">
+        insert into springboottest.dept(springboottest.dept.name,springboottest.dept.create_time,springboottest.dept.update_time) values(#{name},#{createTime},#{updateTime})
+    </insert>
+    <update id="update">
+        update springboottest.dept set springboottest.dept.name=#{name},springboottest.dept.update_time=#{updateTime} where springboottest.dept.id=#{id}
+    </update>
+    <delete id="delete">
+        delete  from springboottest.dept where id=#{id}
+    </delete>
+    <select id="list" resultType="com.test.springbootproject01.pojo.Dept">
+        select * from springboottest.dept
+    </select>
+    <select id="list1" resultType="com.test.springbootproject01.pojo.Dept">
+        select * from springboottest.dept where id=#{id}
+    </select>
+</mapper>
