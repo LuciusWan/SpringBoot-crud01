@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.springbootproject01.mapper.EmpMapper">
+    <insert id="insert">
+        insert into springboottest.emp(springboottest.emp.username, springboottest.emp.password, springboottest.emp.name, springboottest.emp.gender, springboottest.emp.image, springboottest.emp.job, springboottest.emp.entrydate, springboottest.emp.dept_id, springboottest.emp.create_time, springboottest.emp.update_time)
+        values(#{username},#{password},#{name},#{gender},#{image},#{job},#{entrydate},#{deptId},#{createTime},#{updateTime})
+    </insert>
+    <update id="update">
+        update springboottest.emp set springboottest.emp.name=#{name},username=#{username},springboottest.emp.gender=#{gender},springboottest.emp.job=#{job},springboottest.emp.entrydate=#{entrydate},springboottest.emp.dept_id=#{deptId},springboottest.emp.update_time=#{updateTime},springboottest.emp.image=#{image} where id=#{id}
+    </update>
+    <!--<select id="count" resultType="java.lang.Integer">
+        select count(*) from springboottest.emp
+    </select>
+    <select id="list" resultType="com.test.springbootproject01.pojo.Emp">
+        select * from springboottest.emp limit #{page},#{pageSize}
+    </select>-->
+    <delete id="delete">
+        delete from springboottest.emp where springboottest.emp.id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteByDeptId">
+        delete from springboottest.emp where springboottest.emp.dept_id=#{id}
+    </delete>
+    <select id="selectId" resultType="com.test.springbootproject01.pojo.Emp">
+        select * from springboottest.emp where id=#{id}
+    </select>
+    <select id="list" resultType="com.test.springbootproject01.pojo.Emp">
+        select * from springboottest.emp
+        <where>
+            <if test="name!=null">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="gender!=null">
+                and gender=#{gender}
+            </if>
+            <if test="begin!=null and end!=null">
+                and entrydate between #{begin} and #{end}
+            </if>
+        </where>
+        limit #{page},#{pageSize}
+    </select>
+    <select id="login" resultType="com.test.springbootproject01.pojo.Emp">
+        select * from springboottest.emp where username=#{username} and password=#{password}
+    </select>
+</mapper>
